@@ -33,10 +33,7 @@ activity_labels[,2]<-as.character(activity_labels[,2])
 names(activity_labels)[2]<-"activity"
 full<-full %>% merge(activity_labels,by.x="Act",by.y="V1",all=TRUE,sort = FALSE) %>% select(-1)
 
-#5.From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-DS_avg <- full %>% 
-    gather(variable, value, 1:(ncol(full)-2), na.rm= TRUE) %>%
-    group_by(activity,subject,variable) %>%
-    summarize(mean = mean(value)) #%>% head()
 
-write.table(DS_avg, "./tidy.txt", row.name = FALSE, quote = FALSE)
+#5.From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+full_average<-full %>% gather(variable, value, 1:(ncol(full)-2), na.rm= TRUE) %>% dcast(activity+subject~variable,mean)
+write.table(full_average, "./tidy.txt", row.name = FALSE, quote = FALSE)

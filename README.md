@@ -30,7 +30,6 @@ full data set is merged with activity_labels
 
 - From the full data set creates a second, independent tidy data set with the average of each variable for each activity and each subject
 gather function takes "variable" columns and collapses into key-value pairs, duplicating all other columns
-group_by function gropus by activity,subject and variable
-summarize function returns mean value for grouped data 
-tidy data set is named DS_avg
-DS_avg is written in tidy.txt file as result of the function
+dcast function returns mean value of each measurement for each activitiy and subject 
+tidy data set is named full_average
+full_average is written in tidy.txt file as result of the function
